@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  @apply text-3xl font-semibold
+}
+
+h2 {
+  @apply text-xl font-semibold
+}
+
+input {
+  @apply border border-gray-200 rounded-lg w-full mb-3 px-3
+}
