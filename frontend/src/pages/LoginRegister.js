@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { studContext } from "../context/studentContext";
 
 export default function LoginRegister() {
     const [isLogin, setIsLogin] = useState(true);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("");
+    const {name : loggedInName, email: loggedInEmail, setName: setLoggedInName, setEmail: setLoggedInEmail} = useContext(studContext);
 
 
     async function handleSubmit(e){
@@ -14,14 +16,22 @@ export default function LoginRegister() {
             if(isLogin){
                 const res = await axios.post("/login", {email, password});
                 console.log(res.data);
+                if(res.data.name){
+                    setLoggedInName(() => res.data.name);
+                    setLoggedInEmail(() => res.data.email);
+                }
             }else{
                 const res = await axios.post("/register", {name, email, password});
                 console.log(res.data);
+                if(res.data.name){
+                    setLoggedInName(() => res.data.name);
+                    setLoggedInEmail(() => res.data.email);
+                }
             }
+            
         } catch (error) {
             console.error("Something wrong with server: ", error)
         }
-        
     }
 
     return(
