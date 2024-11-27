@@ -15,11 +15,11 @@ export default function Navbar() {
     }
 
     return(
-        <div className="w-full bg-slate-200 flex justify-between items-center px-4">
+        <div className="w-full bg-gray-700 flex justify-between items-center px-12 py-2 m-0">
             <div>
-                <h2>Present Sir</h2>
+                <h2 className="text-white">Present Sir</h2>
             </div>
-            <div className="flex justify-evenly gap-2">
+            <div className="flex justify-evenly gap-4">
                 <div>
                     <button className="w-full bg-blue-400 rounded-lg p-1 px-2 m-1 text-white">
                         Profile
