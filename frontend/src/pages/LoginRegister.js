@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { studContext } from "../context/studentContext";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginRegister() {
     const [isLogin, setIsLogin] = useState(true);
@@ -8,7 +9,7 @@ export default function LoginRegister() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("");
     const {name : loggedInName, email: loggedInEmail, setName: setLoggedInName, setEmail: setLoggedInEmail} = useContext(studContext);
-
+    const navigate = useNavigate();
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -19,6 +20,7 @@ export default function LoginRegister() {
                 if(res.data.name){
                     setLoggedInName(() => res.data.name);
                     setLoggedInEmail(() => res.data.email);
+                    navigate('/home');
                 }
             }else{
                 const res = await axios.post("/register", {name, email, password});
@@ -26,6 +28,7 @@ export default function LoginRegister() {
                 if(res.data.name){
                     setLoggedInName(() => res.data.name);
                     setLoggedInEmail(() => res.data.email);
+                    navigate('/home');
                 }
             }
             

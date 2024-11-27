@@ -3,22 +3,22 @@ import './App.css';
 import Home from './pages/Home';
 import LoginRegister from './pages/LoginRegister';
 import { studContext } from './context/studentContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProtectedRoutes from './components/protectedRoutes';
 
 function App() {
+  return(
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<LoginRegister />} />
 
-  const {name, email} = useContext(studContext);
+      <Route element={<ProtectedRoutes/>}>
+        <Route path='/home' element={<Home />} />
+      </Route>
 
-  if(name){
-    return(
-      <Home />
-    )
-  }
-
-   return (
-    <>
-      <LoginRegister />
-    </>
-  );
+    </Routes>
+  </BrowserRouter>
+  )
 }
 
 export default App;
